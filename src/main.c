@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 20:20:11 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/02 00:11:57 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/03 16:13:44 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,9 @@ int	main(int ac, char *av[], char **ep)
 		close(pipefd[1]);
 		execute_cmd(av[3], ep, pipefd[0], out_fd);
 	}
-	wait(NULL);
-	return (0);
+	int status;
+	waitpid(pid, &status, 0);
+	return (WEXITSTATUS(status));
 }
 
 void	execute_cmd(char *arg, char **ep, int fd1, int fd2)
@@ -89,16 +90,21 @@ void	execute_cmd(char *arg, char **ep, int fd1, int fd2)
 	}
 	else
 	{
+		
 		path = get_cmd_path(cmd, ep);
 		if (!path)
 			malloc_failed(cmd, path);
+		
 	}
+	
 	if (dup2(fd1, STDIN_FILENO) == -1)
 		dup_failed(fd1);
 	close(fd1);
+	
 	if (dup2(fd2, STDOUT_FILENO) == -1)
 		dup_failed(fd2);
 	close(fd2);
+	
 	if (execve(path, cmd, ep) == -1)
 		exec_failed(cmd, path);
 }
