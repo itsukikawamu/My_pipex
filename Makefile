@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/11 13:17:32 by ikawamuk          #+#    #+#              #
-#    Updated: 2025/07/06 17:10:04 by ikawamuk         ###   ########.fr        #
+#    Updated: 2025/07/06 18:52:02 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,8 +36,9 @@ SRCFILES =	main.c\
 			validate.c\
 			utils.c\
 			set_ctx.c\
+			pipex_core.c\
 			
-
+			
 # BONUS_SRCFILES = $(patsubst %.c, %_bonus.c, $(SRCFILES))
 
 SRCS = $(addprefix $(SRCDIR)/, $(SRCFILES))

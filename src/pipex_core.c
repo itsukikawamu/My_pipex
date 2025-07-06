@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   pipex_core.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/06 13:10:37 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/06 18:52:11 by ikawamuk         ###   ########.fr       */
+/*   Created: 2025/07/06 18:51:22 by ikawamuk          #+#    #+#             */
+/*   Updated: 2025/07/06 18:52:18 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	main(int ac, char *av[], char *ep[])
+int	pipex_core(t_ctx *ctx)
 {
-	t_ctx	ctx;
-
-	(void)ep;
-	validate(ac, av);
-	if (set_ctx(ac, av, &ctx) == -1)
-		error(ctx.err_str);
-	pipex_core(&ctx);
-	return (0);
+	
 }
