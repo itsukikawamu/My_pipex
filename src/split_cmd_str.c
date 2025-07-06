@@ -6,13 +6,16 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 13:11:42 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/06 14:58:50 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/06 15:07:41 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "split_cmd_str.h"
 
-static char *free_arr(char **arr);
+static char 	**free_arr(char **arr);
+static char 	*dup_token(char *src, size_t n);
+static size_t	count_arr(char *str);
+static char 	*get_token(char **str);
 
 char	**split_cmd_str(char *str)
 {
@@ -57,8 +60,11 @@ static size_t	count_arr(char *str)
 			str++;
 		}
 	}
-	if (is_syntax_error(state))
-		return (0);
+	if (state & (SINGLE_QUOTE | DOUBLE_QUOTE | ESCAPED))
+	{
+		errno = SYNTAX_ERROR1;
+		return (NULL);
+	}
 	return (cnt);
 }
 
@@ -93,7 +99,7 @@ static char *dup_token(char *src, size_t n)
 	return (cpy_token(token, src, n));
 }
 
-static char *free_arr(char **arr)
+static char **free_arr(char **arr)
 {
 	size_t	i;
 

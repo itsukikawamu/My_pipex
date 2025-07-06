@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/11 13:17:32 by ikawamuk          #+#    #+#              #
-#    Updated: 2025/07/06 13:07:46 by ikawamuk         ###   ########.fr        #
+#    Updated: 2025/07/06 15:05:08 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,11 @@ INCDIR = include
 LIBFTDIR = libft
 TMPDIR = ar_tmp
 
-SRCFILES =	
+SRCFILES =	main.c\
+			split_cmd_str.c\
+			split_util.c\
+			error_handle.c\
+			
 
 # BONUS_SRCFILES = $(patsubst %.c, %_bonus.c, $(SRCFILES))
 

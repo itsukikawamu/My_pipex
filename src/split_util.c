@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 13:16:33 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/06 15:03:28 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/06 15:07:48 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,6 @@ int	update_state(char c, int state)
 			return (state | DOUBLE_QUOTE);
 	}
 	return (state);
-}
-
-bool	is_syntax_error(int state)
-{
-	if (state & (SINGLE_QUOTE | DOUBLE_QUOTE | ESCAPED))
-	{
-		errno = SYNTAX_ERROR1;
-		return (true);
-	}
-	return (false);
 }
 
 bool	is_delimiter(char c, int state)
