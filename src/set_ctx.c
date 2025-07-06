@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 17:07:59 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/06 18:47:33 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/06 18:49:54 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	set_ctx(int ac, char **av, t_ctx *ctx)
 	ctx->err_str = NULL;
 	if (open_files(ac, av, ctx) == -1)
 		return (-1);
-
+	ctx->cmd_num = ac - 3;
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 20:10:14 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/06 17:09:11 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/06 18:49:28 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_ctx{
 	int		in_fd;
 	int		out_fd;
 	char	*err_str;
+	size_t	cmd_num;
 }	t_ctx;
 
 void	validate(int ac, char *av[]);
