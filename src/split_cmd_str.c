@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 13:11:42 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/06 15:07:41 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/06 15:08:15 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static size_t	count_arr(char *str)
 	if (state & (SINGLE_QUOTE | DOUBLE_QUOTE | ESCAPED))
 	{
 		errno = SYNTAX_ERROR1;
-		return (NULL);
+		return (0);
 	}
 	return (cnt);
 }

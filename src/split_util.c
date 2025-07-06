@@ -6,11 +6,13 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 13:16:33 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/06 15:07:48 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/06 15:08:54 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "split_cmd_str.h"
+
+static bool	is_char_to_display(const char *str, int state);
 
 char	*cpy_token(char *token, char *src, size_t n)
 {
@@ -64,6 +66,24 @@ int	update_state(char c, int state)
 			return (state | DOUBLE_QUOTE);
 	}
 	return (state);
+}
+
+static bool	is_char_to_display(const char *str, int state)
+{
+	if (state == NORMAL && (*str == '\''))
+		return (false);
+	else if (state == NORMAL && (*str == '"'))
+		return (false);
+	else if (state == NORMAL && (*str == '\\'))
+		return (false);
+	else if ((state & SINGLE_QUOTE) && (*str == '\''))
+		return (false);
+	else if ((state & DOUBLE_QUOTE) && (*str == '"'))
+		return (false);
+	else if ((state & DOUBLE_QUOTE) && (*str == '\\'))
+		if(str[1] == '\\' || str[1] == '"')
+			return (false);
+	return (true);
 }
 
 bool	is_delimiter(char c, int state)
