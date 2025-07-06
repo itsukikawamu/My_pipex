@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 16:13:50 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/06 16:29:07 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/06 23:14:49 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define _GNU_SOURCE
 # include <unistd.h>
 # include "libft.h"
+# include "config.h"
 
 // utils.c
 void	free_str_arr(char **arr);

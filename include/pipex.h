@@ -6,26 +6,14 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 20:10:14 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/06 19:03:31 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/06 23:14:17 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# include "libft.h"
-# include "split_cmd_str.h"
-# include "utils.h"
-# include <stdio.h>
-
-typedef struct s_ctx{
-	int		in_fd;
-	int		out_fd;
-	char	*err_str;
-	size_t	cmd_num;
-	char	**cmd;
-	char	**ep;
-}	t_ctx;
+#include "config.h"
 
 void	validate(int ac, char *av[]);
 int		set_ctx(int ac, char **av, t_ctx *ctx);
