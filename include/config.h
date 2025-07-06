@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 23:13:15 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/06 23:18:47 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/06 23:56:26 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,25 @@
 # define CONFIG_H
 
 #include <stdlib.h>
-
+#include <sys/types.h>
 
 # define SYNTAX_ERROR1	1001
 # define SYNTAX_ERROR2	1002
 
+typedef struct s_cp{
+	pid_t	pid;
+	int		input;
+	int		output;
+	char	**path;
+}	t_cp;
+
 typedef struct s_ctx{
-	int		in_fd;
-	int		out_fd;
+	int		infile;
+	int		outfile;
 	char	*err_str;
 	size_t	cmd_num;
 	char	**cmd;
-	char	**ep;
+	t_cp	cp;
 }	t_ctx;
 
 #endif
