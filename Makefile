@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/11 13:17:32 by ikawamuk          #+#    #+#              #
-#    Updated: 2025/07/06 16:16:23 by ikawamuk         ###   ########.fr        #
+#    Updated: 2025/07/06 17:09:25 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,9 +32,10 @@ TMPDIR = ar_tmp
 SRCFILES =	main.c\
 			split_cmd_str.c\
 			split_util.c\
-			error_handle.c\
+			error.c\
 			validate.c\
 			utils.c\
+			set_ctx.h\
 			
 
 # BONUS_SRCFILES = $(patsubst %.c, %_bonus.c, $(SRCFILES))
