@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 13:10:37 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/06 14:11:05 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/06 14:40:10 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,12 @@ int	main(int ac, char *av[], char *ep[])
 	if (!arr)
 		error();
 	return (0);
+}
+
+static void	error()
+{
+	if (errno == SYNTAX_ERROR1)
+		ft_putstr_fd("syntax error: unterminated quote or dangling \\\n", 2);
+	else if (errno == SYNTAX_ERROR2)
+	ft_putstr_fd("syntax error: line ends with \\\n", 2);
 }
