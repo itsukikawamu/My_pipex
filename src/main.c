@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 13:10:37 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/06 15:05:22 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/06 15:10:30 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,16 @@ int	main(int ac, char *av[], char *ep[])
 	(void)ep;
 	if (ac < 2)
 		return (1);
-	// ft_printf("av[1]: %s\n", av[1]);
+	ft_printf("av[1]: %s\n", av[1]);
 	arr = split_cmd_str(av[1]);
 	if (!arr)
 		error();
+	int i = 0;
+	while (arr[i])
+	{
+		ft_printf("arr[%d]: %s\n", i, arr[i]);
+		i++;
+	}
 	return (0);
 }
 

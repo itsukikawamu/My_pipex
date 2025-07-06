@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 13:16:33 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/06 15:08:54 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/06 15:11:17 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*cpy_token(char *token, char *src, size_t n)
 	while (n--)
 	{
 		if (is_char_to_display(src, state))
-			token[i] = *src;
+			token[i++] = *src;
 		state = update_state(*src, state);
 		src++;
 	}
