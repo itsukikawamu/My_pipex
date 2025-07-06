@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 19:55:49 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/01 23:38:03 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/06 16:19:28 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ static void	show_help(char *name);
 
 void	validate(int ac, char *av[])
 {
-	if (ac < 5)
-		invalid_usage(av[0]);
-	else if (ft_strcmp(av[1], "--help") == 0 || ft_strcmp(av[1], "-h") == 0)
+	if (ft_strcmp(av[1], "--help") == 0 || ft_strcmp(av[1], "-h") == 0)
 		show_help(av[0]);
+	else if (ac < 5)
+		invalid_usage(av[0]);
 	return ;
 }
 

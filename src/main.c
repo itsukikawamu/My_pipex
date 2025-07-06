@@ -6,30 +6,66 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 13:10:37 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/06 16:15:56 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/06 16:58:00 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+#include <fcntl.h>
 
-static void	error();
+static void	error(char *str);
+static int	set_ctx(int ac, char **av, t_ctx *ctx);
+
 
 int	main(int ac, char *av[], char *ep[])
 {
-	validate(ac, av);
+	t_ctx	ctx;
+
 	(void)ep;
-	error();
+	validate(ac, av);
+	if (set_ctx(ac, av, &ctx) == -1)
+		error(ctx.err_str);
 	return (0);
 }
 
-static void	error()
+static int	set_ctx(int ac, char **av, t_ctx *ctx)
+{
+	ctx->err_str = NULL;
+	ctx->in_fd = open(av[1], O_RDONLY);
+	if (ctx->in_fd == -1)
+	{
+		ctx->err_str = av[1];
+		return (-1);
+	}
+	ctx->out_fd = open(av[ac - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	if (ctx->out_fd == -1)
+	{
+		close(ctx->in_fd);
+		ctx->err_str = av[ac - 1];
+		return (-1);
+	}
+	return (0);
+}
+
+static void	error(char *str)
 {
 	if (errno == SYNTAX_ERROR1)
+		ft_putstr_fd("pipex: unterminated quote or dangling \\\n", 2);
+	else if(errno == ENOENT)
 	{
-		ft_putstr_fd("pipex: syntax error:"\
-		"unterminated quote or dangling \\\n", 2);
+		ft_putstr_fd("pipex: ", 2);
+		ft_putstr_fd(str, 2);
+		ft_putstr_fd(": No such file or directory\n", 2);
+		exit(127);
 	}
-	
-	else
-		perror("pipex");
+	else if (errno == EACCES)
+	{
+		ft_putstr_fd("pipex: ", 2);
+		ft_putstr_fd(str, 2);
+		ft_putstr_fd(": Permission denied\n", 2);
+		exit(126);		
+	}
+	else if(errno == ENOMEM)
+		ft_putstr_fd("pipex: Cannot allocate memory\n", 2);
+	exit(1);
 }
