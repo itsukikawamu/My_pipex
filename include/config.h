@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 23:13:15 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/06 23:14:07 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/06 23:18:47 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define CONFIG_H
 
 #include <stdlib.h>
+
+
+# define SYNTAX_ERROR1	1001
+# define SYNTAX_ERROR2	1002
 
 typedef struct s_ctx{
 	int		in_fd;

@@ -6,19 +6,19 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 17:07:59 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/06 23:11:14 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/06 23:20:34 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include "pipex.h"
 
-static int	open_files(int ac, char *av[], t_ctx *ctx);
+static int	set_fd(int ac, char *av[], t_ctx *ctx);
 
 int	set_ctx(int ac, char **av, char **ep, t_ctx *ctx)
 {
 	ctx->err_str = NULL;
-	if (open_files(ac, av, ctx) == -1)
+	if (set_fd(ac, av, ctx) == -1)
 		return (-1);
 	ctx->cmd_num = ac - 3;
 	ctx->cmd = av + 2;
@@ -26,7 +26,7 @@ int	set_ctx(int ac, char **av, char **ep, t_ctx *ctx)
 	return (0);
 }
 
-static int	open_files(int ac, char *av[], t_ctx *ctx)
+static int	set_fd(int ac, char *av[], t_ctx *ctx)
 {
 	ctx->in_fd = open(av[1], O_RDONLY);
 	if (ctx->in_fd == -1)
