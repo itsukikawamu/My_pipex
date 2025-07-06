@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 18:59:10 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/07 00:12:55 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/07 00:14:05 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@ int excute_cmd(t_ctx *ctx)
 	pid_t	pid;
 
 	pid = fork();
+	if (!excutable(ctx))
+		return (-1);
 	if (pid == 0)
 	{
-		execute(*ctx->cmd, ctx->cp.ep, ctx->cp.input, ctx->cp.output);
+		execute(ctx);
 	}
 	return (0);
 }
