@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 23:13:15 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/06 23:56:26 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/07 00:12:51 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_cp{
 	pid_t	pid;
 	int		input;
 	int		output;
-	char	**path;
+	char	**ep;
 }	t_cp;
 
 typedef struct s_ctx{

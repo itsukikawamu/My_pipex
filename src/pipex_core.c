@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 18:51:22 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/07 00:09:41 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/07 00:10:41 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	pipex_core(t_ctx *ctx)
 	int		pipefd[2];
 	size_t	i;
 
-	
+	ctx->cp.input = ctx->infile;
 	while (i < ctx->cmd_num)
 	{
 		// if (set_fd() == -1)
