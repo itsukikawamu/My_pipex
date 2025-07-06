@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split_util.c                                       :+:      :+:    :+:   */
+/*   error_handle.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/06 13:16:33 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/06 14:08:25 by ikawamuk         ###   ########.fr       */
+/*   Created: 2025/07/06 14:06:06 by ikawamuk          #+#    #+#             */
+/*   Updated: 2025/07/06 14:09:43 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "split_cmd_str.h"
 
-int is_delimiter(char c, int state)
+void	malloc_error(void)
 {
-	if (state & (SINGLE_QUOTE | DOUBLE_QUOTE | ESCAPED))
-		return 0;
-	return (c == ' ' || c == '\t' || c == '\n');
+	ft_putstr_fd("pipex: malloc: memory exhausted\n",2);
 }
