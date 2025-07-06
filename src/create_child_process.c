@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   create_child_process.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/03 20:10:14 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/06 19:03:31 by ikawamuk         ###   ########.fr       */
+/*   Created: 2025/07/06 18:59:10 by ikawamuk          #+#    #+#             */
+/*   Updated: 2025/07/06 19:07:28 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "pipex.h"
+#include <sys/types.h>
 
-# include "libft.h"
-# include "split_cmd_str.h"
-# include "utils.h"
-# include <stdio.h>
+int create_child_process(int **pipefd, t_ctx *ctx)
+{
+	pid_t	pid;
 
-typedef struct s_ctx{
-	int		in_fd;
-	int		out_fd;
-	char	*err_str;
-	size_t	cmd_num;
-	char	**cmd;
-	char	**ep;
-}	t_ctx;
-
-void	validate(int ac, char *av[]);
-int		set_ctx(int ac, char **av, t_ctx *ctx);
-int		pipex_core(t_ctx *ctx);
-void	error(char *str);
-
-#endif
+	pid = fork();
+	if (pid == 0)
+	{
+		execute_cmd(*ctx->cmd, ctx->ep, ctx->in_fd, pipefd[1]);
+	}
+	return (0);
+}
