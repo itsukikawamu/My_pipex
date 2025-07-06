@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/06 13:10:37 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/06 16:15:56 by ikawamuk         ###   ########.fr       */
+/*   Created: 2025/07/06 16:13:50 by ikawamuk          #+#    #+#             */
+/*   Updated: 2025/07/06 16:17:53 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#ifndef UTILS_H
+# define UTILS_H
 
-static void	error();
+# define _GNU_SOURCE
+# include <unistd.h>
+# include "libft.h"
 
-int	main(int ac, char *av[], char *ep[])
-{
-	validate(ac, av);
-	(void)ep;
-	error();
-	return (0);
-}
+// utils.c
+void	free_str_arr(char **arr);
+char	*ft_getenv(char **ep, const char *name);
+int		ft_strcmp(char *s1, char *s2);
 
-static void	error()
-{
-	if (errno == SYNTAX_ERROR1)
-	{
-		ft_putstr_fd("pipex: syntax error:"\
-		"unterminated quote or dangling \\\n", 2);
-	}
-	
-	else
-		perror("pipex");
-}
+
+#endif
