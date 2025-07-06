@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 14:06:06 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/06 17:07:22 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/06 18:46:59 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	error(char *str)
 		ft_putstr_fd("pipex: Cannot allocate memory\n", 2);
 	else if (errno == SYNTAX_ERROR1)
 		ft_putstr_fd("pipex: unterminated quote or dangling \\\n", 2);
-	exit(1);
+	exit(EXIT_FAILURE);
 }
 
 static void	permission_denied(char *file_name)

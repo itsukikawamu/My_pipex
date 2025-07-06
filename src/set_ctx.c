@@ -6,16 +6,26 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 17:07:59 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/06 17:09:02 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/06 18:47:33 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include "pipex.h"
 
+static int	open_files(int ac, char *av[], t_ctx *ctx);
+
 int	set_ctx(int ac, char **av, t_ctx *ctx)
 {
 	ctx->err_str = NULL;
+	if (open_files(ac, av, ctx) == -1)
+		return (-1);
+
+	return (0);
+}
+
+static int	open_files(int ac, char *av[], t_ctx *ctx)
+{
 	ctx->in_fd = open(av[1], O_RDONLY);
 	if (ctx->in_fd == -1)
 	{
@@ -31,4 +41,3 @@ int	set_ctx(int ac, char **av, t_ctx *ctx)
 	}
 	return (0);
 }
-
