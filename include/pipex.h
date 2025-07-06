@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 20:10:14 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/06 18:49:28 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/06 18:52:38 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_ctx{
 
 void	validate(int ac, char *av[]);
 int		set_ctx(int ac, char **av, t_ctx *ctx);
+int		pipex_core(t_ctx *ctx);
 void	error(char *str);
 
 #endif
