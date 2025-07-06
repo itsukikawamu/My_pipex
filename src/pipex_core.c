@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 18:51:22 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/07 00:06:56 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/07 00:09:41 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	pipex_core(t_ctx *ctx)
 	{
 		// if (set_fd() == -1)
 		// 	return (-1);
-		if (f(&pipefd, ctx) == -1)
+		if (excute_cmd(ctx) == -1)
 			return (-1);
 		ctx->cmd++;
 		i++;
