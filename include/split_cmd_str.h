@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 21:36:28 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/06 14:52:05 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/06 15:04:17 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@
 
 char	**split_cmd_str(char *str);
 // split_util.c
-int		is_delimiter(char c, int state);
+size_t	count_token_len(char *str, size_t n);
+char	*cpy_token(char *token, char *src, size_t n);
+bool	is_delimiter(char c, int state);
 bool	is_syntax_error(int state);
 int		update_state(char c, int state);
 

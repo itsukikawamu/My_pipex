@@ -6,11 +6,45 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 13:16:33 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/06 14:51:53 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/06 15:03:28 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "split_cmd_str.h"
+
+char	*cpy_token(char *token, char *src, size_t n)
+{
+	size_t	i;
+	int		state;
+
+	i = 0;
+	state = NORMAL;
+	while (n--)
+	{
+		if (is_char_to_display(src, state))
+			token[i] = *src;
+		state = update_state(*src, state);
+		src++;
+	}
+	return (token);
+}
+
+size_t	count_token_len(char *str, size_t n)
+{
+	size_t	len;
+	int		state;
+
+	len = 0;
+	state = NORMAL;
+	while (n--)
+	{
+		if (is_char_to_display(str, state))
+			len++;
+		state = update_state(*str, state);
+		str++;
+	}
+	return (len);
+}
 
 int	update_state(char c, int state)
 {

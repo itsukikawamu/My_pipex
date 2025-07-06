@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 13:11:42 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/06 14:49:22 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/06 14:58:50 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,20 @@ static char *get_token(char **str)
 		(*str)++;
 	}
 	return (dup_token(head, *str - head));
+}
+
+static char *dup_token(char *src, size_t n)
+{
+	char	*token;
+	size_t	len;
+
+	if (n >= SIZE_MAX - 1|| !src)
+		return (NULL);
+	len = count_token_len(src, n);
+	token = ft_calloc(sizeof(char), len + 1);
+	if (!token)
+		return (NULL);
+	return (cpy_token(token, src, n));
 }
 
 static char *free_arr(char **arr)
