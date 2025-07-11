@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 23:13:15 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/11 19:54:30 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/11 20:19:47 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 
 # define SYNTAX_ERROR1	1001
 # define SYNTAX_ERROR2	1002
+# define PIPE_ERROR		1003
+# define EXCUTE_ERROR	1004
 
 typedef struct s_cp{
 	pid_t	pid;
