@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 23:13:15 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/11 20:47:39 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/11 21:36:51 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,12 @@
 
 typedef struct s_cp{
 	pid_t	pid;
+	char	*cmd;
 	int		input;
 	int		output;
 	char	**ep;
 	char	*path_env;
-	char	*c,d_path;
+	char	*cmd_path;
 }	t_cp;
 
 typedef struct s_ctx{
@@ -35,7 +36,7 @@ typedef struct s_ctx{
 	int		outfile;
 	char	*err_str;
 	size_t	cmd_num;
-	char	**cmd;
+	char	**cmds;
 	t_cp	*cp;
 }	t_ctx;
 

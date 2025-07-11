@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 18:51:22 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/11 20:28:30 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/11 21:37:27 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	pipex_core(t_ctx *ctx)
 			errno = EXCUTE_ERROR;
 			return (-1);
 		}
-		ctx->cmd++;
+		ctx->cmds++;
 	}
 	return (0);
 }
@@ -39,6 +39,7 @@ static int	set_cp(t_ctx *ctx)
 {
 	int	tmp;
 
+	ctx->cp->cmd = *ctx->cmds;
 	if (ctx->cmd_num == 0)
 		ctx->cp->output = ctx->outfile;
 	else
