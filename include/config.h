@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 23:13:15 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/11 19:42:18 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/11 19:54:30 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_ctx{
 	char	*err_str;
 	size_t	cmd_num;
 	char	**cmd;
-	t_cp	cp;
+	t_cp	*cp;
 }	t_ctx;
 
 #endif
