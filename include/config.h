@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 23:13:15 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/11 21:52:21 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/11 22:14:58 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # include <stdlib.h>
 # include <sys/types.h>
+
+# define COMMAND_NOT_FOUND	-1
+# define PERMISSION_DENIED	-2
 
 # define SYNTAX_ERROR1	1001
 # define SYNTAX_ERROR2	1002

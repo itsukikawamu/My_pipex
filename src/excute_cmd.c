@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 18:59:10 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/11 21:53:52 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/11 22:24:21 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,25 @@ static int	connect_child_process(t_cp *cp)
 
 static int	find_exec_file(t_cp *cp)
 {
-	(void)cp;
+	int	rev;
+
+	if (ft_strchr(cp->cmd[0], '/'))
+	{
+		cp->cmd_path = cp->cmd[0];
+		rev = check_access(cp->cmd_path);
+		if (rev == PERMISSION_DENIED)
+			return (errno = EACCES, PERMISSION_DENIED);
+		else if (rev == COMMAND_NOT_FOUND)
+			return (errno == ENOENT, COMMAND_NOT_FOUND);
+	}
+	else
+	{
+		cp->cmd_path = get_cmd_path(cp->cmd, cp->env_paths);
+		if (!cp->cmd_path)
+		{
+			errno = ENOMEM;
+			return (-1);
+		}
+	}
 	return (0);
 }

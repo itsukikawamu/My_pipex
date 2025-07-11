@@ -6,18 +6,19 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 02:45:38 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/11 20:51:05 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/11 22:15:22 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "config.h"
 
 int	check_access(char *path)
 {
 	if (access(path, F_OK) != 0)
-		return (-1);
+		return (COMMAND_NOT_FOUND);
 	if (access(path, X_OK) != 0)
-		return (-2);
+		return (PERMISSION_DENIED);
 	return (0);
 }
 
