@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 17:07:59 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/11 19:55:54 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/11 20:47:17 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	set_ctx(int ac, char **av, char **ep, t_ctx *ctx)
 static int	init_cp(int ac, char **av, char **ep, t_cp *cp)
 {
 	cp->ep = ep;
-	cp->path = get_path_env(ep);	
+	cp->path_env = get_path_env(ep);	
 }
 
 static int	open_files(int ac, char *av[], t_ctx *ctx)

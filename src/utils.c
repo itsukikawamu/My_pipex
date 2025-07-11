@@ -6,11 +6,20 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 02:45:38 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/06 23:59:01 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/11 20:51:05 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+int	check_access(char *path)
+{
+	if (access(path, F_OK) != 0)
+		return (-1);
+	if (access(path, X_OK) != 0)
+		return (-2);
+	return (0);
+}
 
 int	ft_strcmp(char *s1, char *s2)
 {
