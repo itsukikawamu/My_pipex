@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 18:59:10 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/11 22:46:02 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/11 22:53:06 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,17 +56,17 @@ static int	find_exec_file(t_cp *cp)
 	{
 		cp->cmd_path = cp->cmd[0];
 		rev = check_access(cp->cmd_path);
-		if (rev == PERMISSION_DENIED)
+		if (rev == PERM_DENIED)
 			return (errno = EACCES, -1);
-		else if (rev == COMMAND_NOT_FOUND)
+		else if (rev == CMD_NOT_FOUND)
 			return (errno = ENOENT, -1);
 	}
 	else
 	{
 		rev = get_cmd_path(cp->cmd_path, cp->cmd, cp->env_paths);
-		if (rev == PERMISSION_DENIED)
+		if (rev == PERM_DENIED)
 			return (errno = EACCES, -1);
-		else if (rev == COMMAND_NOT_FOUND)
+		else if (rev == CMD_NOT_FOUND)
 			return (errno = ENOENT, -1);	
 	}
 	return (0);
@@ -84,11 +84,11 @@ int	get_cmd_path(char *path, char **cmd, char **dir_arr)
 		if (!path)
 			return (-3);
 		rev = check_access(path);
-		if (rev == PERMISSION_DENIED || rev == 0)
+		if (rev == PERM_DENIED || rev == 0)
 			return (rev);
 		free(path);
 		i++;
 	}
 	free_str_arr(dir_arr);
-	return (COMMAND_NOT_FOUND);
+	return (CMD_NOT_FOUND);
 }
