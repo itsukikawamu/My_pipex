@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 02:45:38 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/11 22:26:49 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/11 23:01:19 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ char	*join_dir_and_file_name(char *dir, char *name)
 int	check_access(char *path)
 {
 	if (access(path, F_OK) != 0)
-		return (COMMAND_NOT_FOUND);
+		return (CMD_NOT_FOUND);
 	if (access(path, X_OK) != 0)
-		return (PERMISSION_DENIED);
+		return (PERM_DENIED);
 	return (0);
 }
 

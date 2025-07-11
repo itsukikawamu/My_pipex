@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 18:59:10 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/11 22:53:06 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/11 23:06:52 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,18 +56,20 @@ static int	find_exec_file(t_cp *cp)
 	{
 		cp->cmd_path = cp->cmd[0];
 		rev = check_access(cp->cmd_path);
+		
 		if (rev == PERM_DENIED)
-			return (errno = EACCES, -1);
+			return (errno = PERM_DENIED, -1);
 		else if (rev == CMD_NOT_FOUND)
-			return (errno = ENOENT, -1);
+			return (errno = CMD_NOT_FOUND, -1);
 	}
 	else
 	{
 		rev = get_cmd_path(cp->cmd_path, cp->cmd, cp->env_paths);
+		
 		if (rev == PERM_DENIED)
-			return (errno = EACCES, -1);
+			return (errno = PERM_DENIED, -1);
 		else if (rev == CMD_NOT_FOUND)
-			return (errno = ENOENT, -1);	
+			return (errno = CMD_NOT_FOUND, -1);	
 	}
 	return (0);
 }
