@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 18:51:22 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/11 20:19:49 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/11 20:28:30 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 
 static int	set_cp(t_ctx *ctx);
+static int	new_pipe(int *input, int *output);
 
 int	pipex_core(t_ctx *ctx)
 {
@@ -22,10 +23,7 @@ int	pipex_core(t_ctx *ctx)
 	while (ctx->cmd_num--)
 	{
 		if (set_cp(ctx) == -1)
-		{
-			errno = PIPE_ERROR;
 			return (-1);
-		}
 		if (excute_cmd(ctx) == -1)
 		{
 			close(ctx->cp->output);
@@ -46,8 +44,27 @@ static int	set_cp(t_ctx *ctx)
 	else
 	{
 		tmp = ctx->cp->output;
-		if (newpipe(tmp, ctx->cp->output) == -1)
+		if (newpipe(ctx->cp->input, ctx->cp->output) == -1)
 			return (-1);
 	}
 	return (0);	
+}
+
+static int	new_pipe(int *input, int *output)
+{
+	int	rev;
+	int	pipefd[2];
+
+	rev = pipe(pipefd);
+	if (!rev)
+	{
+		*input = pipefd[0];
+		*output = pipefd[1];
+	}
+	else
+	{
+		*input = -1;
+		*output = -1;
+	}
+	return (rev);
 }
