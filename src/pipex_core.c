@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 18:51:22 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/11 21:51:32 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/11 22:05:19 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,14 @@ int	pipex_core(t_ctx *ctx)
 	while (ctx->cmd_num--)
 	{
 		if (set_cp(ctx) == -1)
+		{
+			ctx->err_str = "pipe";
 			return (-1);
+		}
 		if (excute_cmd(ctx) == -1)
 		{
 			close(ctx->cp->output);
-			errno = EXCUTE_ERROR;
+			ctx->err_str = ctx->cmds[0];
 			return (-1);
 		}
 		ctx->cmds++;
