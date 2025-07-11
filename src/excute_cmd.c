@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 18:59:10 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/11 23:06:52 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/11 23:17:05 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 static int	excute(t_cp *cp);
 static int	connect_child_process(t_cp *cp);
 static int	find_exec_file(t_cp *cp);
-int	get_cmd_path(char *path, char **cmd, char **dir_arr);
+int	get_cmd_path(char **path, char **cmd, char **dir_arr);
 
 int	excute_cmd(t_ctx *ctx)
 {
@@ -64,8 +64,7 @@ static int	find_exec_file(t_cp *cp)
 	}
 	else
 	{
-		rev = get_cmd_path(cp->cmd_path, cp->cmd, cp->env_paths);
-		
+		rev = get_cmd_path(&cp->cmd_path, cp->cmd, cp->env_paths);
 		if (rev == PERM_DENIED)
 			return (errno = PERM_DENIED, -1);
 		else if (rev == CMD_NOT_FOUND)
@@ -74,7 +73,7 @@ static int	find_exec_file(t_cp *cp)
 	return (0);
 }
 
-int	get_cmd_path(char *path, char **cmd, char **dir_arr)
+int	get_cmd_path(char **path, char **cmd, char **dir_arr)
 {
 	size_t	i;
 	int		rev;
@@ -82,13 +81,13 @@ int	get_cmd_path(char *path, char **cmd, char **dir_arr)
 	i = 0;
 	while (dir_arr[i])
 	{
-		path = join_dir_and_file_name(dir_arr[i], cmd[0]);
+		*path = join_dir_and_file_name(dir_arr[i], cmd[0]);
 		if (!path)
 			return (-3);
-		rev = check_access(path);
+		rev = check_access(*path);
 		if (rev == PERM_DENIED || rev == 0)
 			return (rev);
-		free(path);
+		free(*path);
 		i++;
 	}
 	free_str_arr(dir_arr);
