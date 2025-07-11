@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 18:51:22 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/11 22:55:48 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/12 00:18:22 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,28 +27,26 @@ int	pipex_core(t_ctx *ctx)
 			ctx->err_str = "pipe";
 			return (-1);
 		}
+		
 		if (excute_cmd(ctx) == -1)
 		{
-			
-			close(ctx->cp->output);
 			ctx->err_str = *ctx->cmds;
 			return (-1);
 		}
 		ctx->cmds++;
+		ctx->cp->input = ctx->prev_pipe_to_read;
+		
 	}
 	return (0);
 }
 
 static int	set_cp(t_ctx *ctx)
 {
-	int	tmp;
-
 	if (ctx->cmd_num == 0)
 		ctx->cp->output = ctx->outfile;
 	else
 	{
-		tmp = ctx->cp->output;
-		if (new_pipe(&ctx->cp->input, &ctx->cp->output) == -1)
+		if (new_pipe(&ctx->prev_pipe_to_read, &ctx->cp->output) == -1)
 			return (-1);
 	}
 	return (0);	

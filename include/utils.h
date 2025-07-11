@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 16:13:50 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/11 22:26:59 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/11 23:56:43 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define _GNU_SOURCE
 # include <unistd.h>
 # include <errno.h>
+# include <stdio.h>
 # include "libft.h"
 # include "config.h"
 

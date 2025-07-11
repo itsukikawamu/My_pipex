@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 13:11:42 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/11 19:47:39 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/12 00:22:33 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,12 @@ char	**split_cmd_str(char *str)
 	size_t	cnt;
 	size_t	i;
 
+	
 	errno = 0;
 	cnt = count_arr(str);
 	if (errno)
 		return (NULL);
+	
 	arr = ft_calloc(sizeof(char *), cnt + 1);
 	if (!arr)
 		return (NULL);
@@ -46,6 +48,8 @@ static size_t	count_arr(char *str)
 	size_t	cnt;
 	int		state;
 
+	if (!str)
+		return (0);
 	cnt = 0;
 	state = NORMAL;
 	while (*str)

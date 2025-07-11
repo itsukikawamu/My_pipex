@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 23:13:15 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/11 22:49:12 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/12 00:12:13 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_cp{
 typedef struct s_ctx{
 	int		infile;
 	int		outfile;
+	int		prev_pipe_to_read;
 	char	*err_str;
 	size_t	cmd_num;
 	char	**cmds;

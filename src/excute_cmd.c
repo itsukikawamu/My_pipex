@@ -6,45 +6,68 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 18:59:10 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/11 23:17:05 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/12 00:19:36 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 #include "split_cmd_str.h"
+#include <sys/wait.h>
 
 
 static int	excute(t_cp *cp);
-static int	connect_child_process(t_cp *cp);
+static int	connect_to_pipe(t_cp *cp);
 static int	find_exec_file(t_cp *cp);
-int	get_cmd_path(char **path, char **cmd, char **dir_arr);
+static int	get_cmd_path(char **path, char **cmd, char **dir_arr);
 
 int	excute_cmd(t_ctx *ctx)
 {
-	int		rev;
+	pid_t	pid;
+	int		status;
 
+	
 	ctx->cp->cmd = split_cmd_str(*ctx->cmds);
+	
 	if (!ctx->cp->cmd)
 		return (-1);
-	rev = excute(ctx->cp);
+	if (find_exec_file(ctx->cp) == -1)
+		return (-1);
+	;
+	pid = fork();
+	if (pid == -1)
+		return (-1);
+	if (pid == 0)
+	{
+		
+		excute(ctx->cp);
+		perror(ctx->cp->cmd[0]);
+		exit(EXIT_FAILURE);
+	}
+	
+	close(ctx->cp->input);
+	close(ctx->cp->output);
 	free_str_arr(ctx->cp->cmd);
-	return (rev);
+	waitpid(pid, &status, 0);
+	
+	return (0);
 }
 
 static int	excute(t_cp *cp)
 {
-	if (find_exec_file(cp) == -1)
+	if (connect_to_pipe(cp) == -1)
 		return (-1);
-	if (connect_child_process(cp) == -1)
-		return (-1);
-	if (execve(cp->cmd_path, cp->cmd, cp->ep) == -1)
-		return (-1);
-	return (0);
+	execve(cp->cmd_path, cp->cmd, cp->ep);
+	return (-1);
 }
 
-static int	connect_child_process(t_cp *cp)
+static int	connect_to_pipe(t_cp *cp)
 {
-	(void)cp;
+	if (dup2(cp->input, STDIN_FILENO) == -1)
+		return (-1);
+	close(cp->input);
+	if (dup2(cp->output, STDOUT_FILENO) == -1)
+		return (-1);
+	close(cp->output);
 	return (0);
 }
 
@@ -73,7 +96,7 @@ static int	find_exec_file(t_cp *cp)
 	return (0);
 }
 
-int	get_cmd_path(char **path, char **cmd, char **dir_arr)
+static int	get_cmd_path(char **path, char **cmd, char **dir_arr)
 {
 	size_t	i;
 	int		rev;
