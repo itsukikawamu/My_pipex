@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 17:07:59 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/12 00:23:01 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/12 01:41:39 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	set_ctx(int ac, char **av, char **ep, t_ctx *ctx)
 		return (-1);
 	ctx->cmd_num = ac - 3;
 	ctx->cmds = av + 2;
-	
 	ctx->cp = malloc(sizeof(t_cp));
 	if (!ctx->cp)
 		return (-1);
