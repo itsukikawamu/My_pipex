@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 17:07:59 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/07 00:13:05 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/11 19:37:40 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 #include "pipex.h"
 
 static int	open_files(int ac, char *av[], t_ctx *ctx);
-static char	*ft_getenv(char **ep, const char *name);
-static char	**get_path_env(char **ep);
 
 int	set_ctx(int ac, char **av, char **ep, t_ctx *ctx)
 {

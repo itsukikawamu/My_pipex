@@ -6,11 +6,12 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 18:51:22 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/07 00:10:41 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/11 19:40:38 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
+#include "pipex.h"
 
 int	pipex_core(t_ctx *ctx)
 {

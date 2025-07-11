@@ -6,14 +6,14 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 20:10:14 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/06 23:16:54 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/11 19:41:58 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-#include "config.h"
+# include "config.h"
 
 void	validate(int ac, char *av[]);
 int		set_ctx(int ac, char **av, char **ep, t_ctx *ctx);

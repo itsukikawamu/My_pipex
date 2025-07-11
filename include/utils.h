@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 16:13:50 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/07 00:08:17 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/11 19:48:01 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include <unistd.h>
 # include "libft.h"
 # include "config.h"
+
+// excute_cmfd.c
+int	excute_cmd(t_ctx *ctx);
 
 // utils.c
 void	free_str_arr(char **arr);

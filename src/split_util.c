@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 13:16:33 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/06 15:11:17 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/11 19:46:05 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ int	update_state(char c, int state)
 		return (state | ESCAPED);
 	if (state & ESCAPED)
 		return (state & ~ESCAPED);
-	if ((state & SINGLE_QUOTE) &&  c == '\'')
+	if ((state & SINGLE_QUOTE) && c == '\'')
 		return (state & ~SINGLE_QUOTE);
-	if ((state & DOUBLE_QUOTE) && !(state & ESCAPED) && c == '"')	
+	if ((state & DOUBLE_QUOTE) && !(state & ESCAPED) && c == '"')
 		return (state & ~DOUBLE_QUOTE);
 	if ((state & (SINGLE_QUOTE | DOUBLE_QUOTE | ESCAPED)) == 0)
 	{
@@ -81,7 +81,7 @@ static bool	is_char_to_display(const char *str, int state)
 	else if ((state & DOUBLE_QUOTE) && (*str == '"'))
 		return (false);
 	else if ((state & DOUBLE_QUOTE) && (*str == '\\'))
-		if(str[1] == '\\' || str[1] == '"')
+		if (str[1] == '\\' || str[1] == '"')
 			return (false);
 	return (true);
 }
@@ -89,6 +89,6 @@ static bool	is_char_to_display(const char *str, int state)
 bool	is_delimiter(char c, int state)
 {
 	if (state & (SINGLE_QUOTE | DOUBLE_QUOTE | ESCAPED))
-		return 0;
+		return (0);
 	return (c == ' ' || c == '\t' || c == '\n');
 }

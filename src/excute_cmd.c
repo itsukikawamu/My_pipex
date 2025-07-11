@@ -6,13 +6,13 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 18:59:10 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/07 00:14:05 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/11 19:47:52 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-int excute_cmd(t_ctx *ctx)
+int	excute_cmd(t_ctx *ctx)
 {
 	pid_t	pid;
 
