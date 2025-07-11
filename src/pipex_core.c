@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 18:51:22 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/11 21:37:27 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/11 21:51:32 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,12 @@ static int	set_cp(t_ctx *ctx)
 {
 	int	tmp;
 
-	ctx->cp->cmd = *ctx->cmds;
 	if (ctx->cmd_num == 0)
 		ctx->cp->output = ctx->outfile;
 	else
 	{
 		tmp = ctx->cp->output;
-		if (newpipe(ctx->cp->input, ctx->cp->output) == -1)
+		if (new_pipe(&ctx->cp->input, &ctx->cp->output) == -1)
 			return (-1);
 	}
 	return (0);	

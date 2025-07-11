@@ -6,17 +6,19 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 17:07:59 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/11 21:37:34 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/11 21:45:45 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
+#include <unistd.h>
 #include "pipex.h"
+#include "libft.h"
 
 static int	open_files(int ac, char *av[], t_ctx *ctx);
 static char	**get_path_env(char **ep);
 static char	*ft_getenv(char **ep, const char *name);
-static int	init_cp(int ac, char **av, char **ep, t_cp *cp);
+static int	init_cp(char **ep, t_cp *cp);
 
 int	set_ctx(int ac, char **av, char **ep, t_ctx *ctx)
 {
@@ -25,14 +27,17 @@ int	set_ctx(int ac, char **av, char **ep, t_ctx *ctx)
 		return (-1);
 	ctx->cmd_num = ac - 3;
 	ctx->cmds = av + 2;
-	init_cp(ac, av, ep, ctx->cp);
+	init_cp(ep, ctx->cp);
 	return (0);
 }
 
-static int	init_cp(int ac, char **av, char **ep, t_cp *cp)
+static int	init_cp(char **ep, t_cp *cp)
 {
 	cp->ep = ep;
-	cp->path_env = get_path_env(ep);	
+	cp->env_paths = get_path_env(ep);
+	if (!cp->env_paths)
+		return (-1);
+	return (0);
 }
 
 static int	open_files(int ac, char *av[], t_ctx *ctx)

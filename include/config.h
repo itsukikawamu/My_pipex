@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 23:13:15 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/11 21:36:51 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/11 21:52:21 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@
 
 typedef struct s_cp{
 	pid_t	pid;
-	char	*cmd;
+	char	**cmd;
 	int		input;
 	int		output;
 	char	**ep;
-	char	*path_env;
+	char	**env_paths;
 	char	*cmd_path;
 }	t_cp;
 

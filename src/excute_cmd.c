@@ -6,27 +6,31 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 18:59:10 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/11 21:40:52 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/11 21:53:52 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 #include "split_cmd_str.h"
 
+
+static int	excute(t_cp *cp);
+static int	connect_child_process(t_cp *cp);
+static int	find_exec_file(t_cp *cp);
+
 int	excute_cmd(t_ctx *ctx)
 {
-	char	**argv;
 	int		rev;
 
-	argv = split_cmd_str(ctx->cmds);
-	if (!argv)
+	ctx->cp->cmd = split_cmd_str(*ctx->cmds);
+	if (!ctx->cp->cmd)
 		return (-1);
-	rev = execute(ctx);
-	free_str_arr(argv);
+	rev = excute(ctx->cp);
+	free_str_arr(ctx->cp->cmd);
 	return (rev);
 }
 
-int	excute(t_cp *cp)
+static int	excute(t_cp *cp)
 {
 	if (find_exec_file(cp) == -1)
 		return (-1);
@@ -34,5 +38,17 @@ int	excute(t_cp *cp)
 		return (-1);
 	if (execve(cp->cmd_path, cp->cmd, cp->ep) == -1)
 		return (-1);
+	return (0);
+}
+
+static int	connect_child_process(t_cp *cp)
+{
+	(void)cp;
+	return (0);
+}
+
+static int	find_exec_file(t_cp *cp)
+{
+	(void)cp;
 	return (0);
 }

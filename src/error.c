@@ -6,12 +6,13 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 14:06:06 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/11 21:09:49 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/11 21:41:37 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "split_cmd_str.h"
 #include <errno.h>
+#include <string.h>
 
 void	error(char *str)
 {
