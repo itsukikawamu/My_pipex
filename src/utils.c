@@ -6,12 +6,23 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 02:45:38 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/11 22:15:22 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/11 22:26:49 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "config.h"
+
+char	*join_dir_and_file_name(char *dir, char *name)
+{
+	char	*path;
+	char	*tmp;
+
+	tmp = ft_strjoin(dir, "/");
+	path = ft_strjoin(tmp, name);
+	free(tmp);
+	return (path);
+}
 
 int	check_access(char *path)
 {

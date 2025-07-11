@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 16:13:50 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/11 20:51:18 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/11 22:26:59 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 int	excute_cmd(t_ctx *ctx);
 
 // utils.c
+char	*join_dir_and_file_name(char *dir, char *name);
 int		check_access(char *path);
 void	free_str_arr(char **arr);
 char	*ft_getenv(char **ep, const char *name);

@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 17:07:59 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/11 22:09:24 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/11 22:43:03 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	set_ctx(int ac, char **av, char **ep, t_ctx *ctx)
 		return (-1);
 	ctx->cmd_num = ac - 3;
 	ctx->cmds = av + 2;
+	
 	init_cp(ep, ctx->cp);
 	return (0);
 }

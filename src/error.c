@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 14:06:06 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/11 21:41:37 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/11 22:49:56 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	error(char *str)
 		ft_putstr_fd(": ", 2);
 		if (err < 1000)
 			ft_putendl_fd(strerror(err), 2);
+		else if (err == CMD_NOT_FOUND)
+			ft_putstr_fd("command not found\n", 2);
 	}
 	if (err == EACCES || err == ENOEXEC || err == EPERM)
 		exit(126);
