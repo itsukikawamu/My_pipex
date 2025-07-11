@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   excute_cmd.c                                       :+:      :+:    :+:   */
+/*   excute.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/06 18:59:10 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/11 19:49:30 by ikawamuk         ###   ########.fr       */
+/*   Created: 2025/07/11 19:50:33 by ikawamuk          #+#    #+#             */
+/*   Updated: 2025/07/11 19:50:58 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-int	excute_cmd(t_ctx *ctx)
+int	excute(t_ctx* ctx)
 {
-	pid_t	pid;
-
-	pid = fork();
-	if (!is_excutable(ctx))
-		return (-1);
-	if (pid == 0)
-	{
-		execute(ctx);
-	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/11 13:17:32 by ikawamuk          #+#    #+#              #
-#    Updated: 2025/07/06 19:04:46 by ikawamuk         ###   ########.fr        #
+#    Updated: 2025/07/11 19:51:08 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRCFILES =	main.c\
 			set_ctx.c\
 			pipex_core.c\
 			create_child_process.c\
+			excute.c\
 			
 			
 # BONUS_SRCFILES = $(patsubst %.c, %_bonus.c, $(SRCFILES))
