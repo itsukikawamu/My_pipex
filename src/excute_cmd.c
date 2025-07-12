@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 18:59:10 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/12 21:10:56 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/12 21:22:09 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	excute_cmd(t_ctx *ctx)
 	int		status;
 	
 	ctx->cp.cmd = split_cmd_str(*ctx->cmds);
-	if (!ctx->cp.cmd)
+	if (!ctx->cp.cmd | !*ctx->cp.cmd)
 		return (-1);
 	if (find_exec_file(&ctx->cp) == -1)
 	{
@@ -36,8 +36,6 @@ int	excute_cmd(t_ctx *ctx)
 			ctx->status = 127;
 		else if (errno == PERM_DENIED)
 			ctx->status = 126;
-		close(ctx->cp.input);
-		close(ctx->cp.output);
 		return (-1);
 	}
 	
@@ -46,10 +44,9 @@ int	excute_cmd(t_ctx *ctx)
 		return (-1);
 	if (pid == 0)
 		excute(&ctx->cp);
-	close(ctx->cp.input);
-	close(ctx->cp.output);
 	free_str_arr(ctx->cp.cmd);
-	
+	close(ctx->cp.input);
+	close(ctx->cp.output);	
 	waitpid(pid, &status, 0);
 	ctx->status = update_status(status);
 	return (0);

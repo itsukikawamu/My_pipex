@@ -13,14 +13,13 @@ test_invalid_args() {
         echo "$testname: failed (exit $actual_status, expected 1)"
         return
     fi
-
-    if grep -iq "*" errlog; then
-        echo "$testname: success"
-    else
-        echo "$testname: failed (message not found)"
-        echo "--- stderr ---"
-        cat errlog
-    fi
+	if [ -s errlog ]; then
+		echo "$testname: success"
+	else
+		echo "$testname: failed (message not found)"
+		echo "--- stderr ---"
+		cat errlog
+	fi
 }
 echo "-----validation test-----"
 test_invalid_args test_few_args0
@@ -68,4 +67,11 @@ CMD1="no_cmd"; CMD2="cat"
 test test1
 CMD1="cat"; CMD2="no_cmd" 
 test test2
-
+CMD1="   	"; CMD2="cat" # space and tab
+test test3
+CMD1="cat"; CMD2="   	" # space and tab
+test test4
+CMD1=""; CMD2="cat"
+test test5
+CMD1="cat"; CMD2=""
+test test6
