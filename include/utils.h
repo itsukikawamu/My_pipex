@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 16:13:50 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/11 23:56:43 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/12 15:01:40 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ int		ft_strcmp(char *s1, char *s2);
 
 // error_handle.c
 void	open_failed(char *file_name);
+void	error(char *str);
 
 #endif

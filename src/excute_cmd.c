@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 18:59:10 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/12 14:57:12 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/12 15:24:18 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,11 @@ int	excute_cmd(t_ctx *ctx)
 	if (pid == -1)
 		return (-1);
 	if (pid == 0)
-	{
 		excute(&ctx->cp);
-		perror(ctx->cp.cmd[0]);
-		exit(EXIT_FAILURE);
-	}
 	close(ctx->cp.input);
 	close(ctx->cp.output);
 	free_str_arr(ctx->cp.cmd);
-	
 	waitpid(pid, &ctx->status, 0);
-	
 	return (0);
 }
 
@@ -53,6 +47,13 @@ static int	excute(t_cp *cp)
 	if (connect_to_pipe(cp) == -1)
 		return (-1);
 	execve(cp->cmd_path, cp->cmd, cp->ep);
+	error(cp->cmd[0]);
+	if (errno == CMD_NOT_FOUND)
+		exit(127);
+	else if (errno == PERM_DENIED)
+		exit(126);
+	else
+		exit(1);
 	return (-1);
 }
 
