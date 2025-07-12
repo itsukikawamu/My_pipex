@@ -26,13 +26,19 @@ test_invalid_args test_few_args0
 test_invalid_args test_few_args1 file1
 test_invalid_args test_few_args2 file1 "ls"
 test_invalid_args test_few_args3 file1 "ls" "wc"
-
+test_invalid_args test_missing_infile no_such_file "cat" "wc" outfile
+touch unreadable_file
+chmod 000 unreadable_file
+test_invalid_args test_unreadable_infile unreadable_file "cat" "wc" outfile
+touch unwritable_file
+chmod 444 unwritable_file
+test_invalid_args test_unwritable_outfile infile "cat" "wc" unwritable_file
 
 # general test
 
 test(){
 	touch infile; touch outfile1; touch outfile2; touch errlog1; touch errlog2;
-	$CMD1 < infile | $CMD2 > outfile1 2> errlog1
+	eval "$CMD1 < infile | $CMD2 > outfile1 2> errlog1"
 	./pipex infile "$CMD1" "$CMD2" outfile2 2> errlog2
 	if diff outfile1 outfile2 > /dev/null; then
 		echo "$1: success"

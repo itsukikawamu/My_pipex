@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 18:59:10 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/12 21:39:38 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/12 22:13:52 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	excute_cmd(t_ctx *ctx)
 			ctx->status = 126;
 		return (-1);
 	}
-	
 	pid = fork();
 	if (pid == -1)
 		return (-1);
