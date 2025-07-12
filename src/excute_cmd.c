@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 18:59:10 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/12 18:28:31 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/12 18:37:56 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	update_status(int cp_status)
 	if (WIFEXITED(cp_status))
 		return (WEXITSTATUS(cp_status));
 	else if (WIFSIGNALED(cp_status))
-		return (WTERMSIG(cp_status));
+		return (128 + WTERMSIG(cp_status));
 	return (1);
 }
 
