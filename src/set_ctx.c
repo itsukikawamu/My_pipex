@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 17:07:59 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/12 14:57:57 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/12 19:14:01 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 static int	open_files(int ac, char *av[], t_ctx *ctx);
 static char	**get_path_env(char **ep);
-static char	*ft_getenv(char **ep, const char *name);
 
 int	set_ctx(int ac, char **av, char **ep, t_ctx *ctx)
 {
@@ -27,7 +26,6 @@ int	set_ctx(int ac, char **av, char **ep, t_ctx *ctx)
 	ctx->cmd_num = ac - 3;
 	ctx->cmds = av + 2;
 	ctx->cp.ep = ep;
-	
 	ctx->cp.env_paths = get_path_env(ep);
 	
 	if (!ctx->cp.env_paths)
@@ -57,26 +55,7 @@ static int	open_files(int ac, char *av[], t_ctx *ctx)
 static char	**get_path_env(char **ep)
 {
 	char	*path;
-
 	
 	path = ft_getenv(ep, "PATH");
 	return (ft_split(path, ':'));
-}
-
-static char	*ft_getenv(char **ep, const char *name)
-{
-	int	name_len;
-	int	i;
-
-	if (!ep || !name)
-		return (NULL);
-	name_len = ft_strlen(name);
-	i = 0;
-	while (ep[i])
-	{
-		if (ft_strncmp(ep[i], name, name_len) == 0 && ep[i][name_len] == '=')
-			return (ep[i] + name_len + 1);
-		i++;
-	}
-	return (NULL);
 }

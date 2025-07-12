@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 02:45:38 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/12 14:47:13 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/12 19:13:29 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,22 @@ void	free_str_arr(char **arr)
 	free(arr);
 	arr = NULL;
 	return ;
+}
+
+char	*ft_getenv(char **ep, const char *name)
+{
+	int	name_len;
+	int	i;
+
+	if (!ep || !name)
+		return (NULL);
+	name_len = ft_strlen(name);
+	i = 0;
+	while (ep[i])
+	{
+		if (ft_strncmp(ep[i], name, name_len) == 0 && ep[i][name_len] == '=')
+			return (ep[i] + name_len + 1);
+		i++;
+	}
+	return (NULL);
 }
