@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 18:59:10 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/12 14:48:12 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/12 14:57:12 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,28 +23,28 @@ static int	get_cmd_path(char **path, char **cmd, char **dir_arr);
 int	excute_cmd(t_ctx *ctx)
 {
 	pid_t	pid;
-	int		status;
 
-	ctx->cp->cmd = split_cmd_str(*ctx->cmds);
 	
-	if (!ctx->cp->cmd)
+	ctx->cp.cmd = split_cmd_str(*ctx->cmds);
+	if (!ctx->cp.cmd)
 		return (-1);
-	if (find_exec_file(ctx->cp) == -1)
+	if (find_exec_file(&ctx->cp) == -1)
 		return (-1);
-	
 	pid = fork();
 	if (pid == -1)
 		return (-1);
 	if (pid == 0)
 	{
-		excute(ctx->cp);
-		perror(ctx->cp->cmd[0]);
+		excute(&ctx->cp);
+		perror(ctx->cp.cmd[0]);
 		exit(EXIT_FAILURE);
 	}
-	close(ctx->cp->input);
-	close(ctx->cp->output);
-	free_str_arr(ctx->cp->cmd);
-	waitpid(pid, &status, 0);
+	close(ctx->cp.input);
+	close(ctx->cp.output);
+	free_str_arr(ctx->cp.cmd);
+	
+	waitpid(pid, &ctx->status, 0);
+	
 	return (0);
 }
 

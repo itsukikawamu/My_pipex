@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 17:07:59 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/12 14:29:17 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/12 14:57:57 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@ int	set_ctx(int ac, char **av, char **ep, t_ctx *ctx)
 		return (-1);
 	ctx->cmd_num = ac - 3;
 	ctx->cmds = av + 2;
-	ctx->cp->ep = ep;
-	ctx->cp->env_paths = get_path_env(ep);
-	if (!ctx->cp->env_paths)
+	ctx->cp.ep = ep;
+	
+	ctx->cp.env_paths = get_path_env(ep);
+	
+	if (!ctx->cp.env_paths)
 		return (-1);
-	ctx->cp->input = ctx->infile;
+	ctx->cp.input = ctx->infile;
 	return (0);
 }
 
@@ -56,6 +58,7 @@ static char	**get_path_env(char **ep)
 {
 	char	*path;
 
+	
 	path = ft_getenv(ep, "PATH");
 	return (ft_split(path, ':'));
 }
