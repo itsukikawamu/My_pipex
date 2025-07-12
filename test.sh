@@ -60,6 +60,9 @@ test test5
 CMD1="sort"; CMD2="uniq"
 echo -e "banana\napple\nbanana\ncherry" > infile
 test test6
+CMD1="cat"; CMD2="grep 'a b'"
+echo -e "a b\nb c\nc a\na b c" > infile
+test test7
 
 # error case test
 echo "-----error case test-----"
