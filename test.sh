@@ -14,7 +14,7 @@ test_invalid_args() {
         return
     fi
 
-    if grep -iq "" errlog; then
+    if grep -iq "*" errlog; then
         echo "$testname: success"
     else
         echo "$testname: failed (message not found)"
