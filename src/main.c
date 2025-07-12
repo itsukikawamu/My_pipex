@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 13:10:37 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/12 18:20:46 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/12 19:17:39 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int ac, char *av[], char *ep[])
 	t_ctx	ctx;
 
 	validate(ac, av);
-	
+
 	if (set_ctx(ac, av, ep, &ctx) == -1)
 	{
 		error(ctx.err_str);
