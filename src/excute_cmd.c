@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 18:59:10 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/12 18:37:56 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/12 21:10:56 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,16 @@ int	excute_cmd(t_ctx *ctx)
 		return (-1);
 	if (find_exec_file(&ctx->cp) == -1)
 	{
+		
 		if (errno == CMD_NOT_FOUND)
 			ctx->status = 127;
 		else if (errno == PERM_DENIED)
 			ctx->status = 126;
+		close(ctx->cp.input);
+		close(ctx->cp.output);
 		return (-1);
 	}
+	
 	pid = fork();
 	if (pid == -1)
 		return (-1);
@@ -45,6 +49,7 @@ int	excute_cmd(t_ctx *ctx)
 	close(ctx->cp.input);
 	close(ctx->cp.output);
 	free_str_arr(ctx->cp.cmd);
+	
 	waitpid(pid, &status, 0);
 	ctx->status = update_status(status);
 	return (0);
@@ -65,13 +70,7 @@ static int	excute(t_cp *cp)
 		return (-1);
 	execve(cp->cmd_path, cp->cmd, cp->ep);
 	error(cp->cmd[0]);
-	if (errno == CMD_NOT_FOUND)
-		exit(127);
-	else if (errno == PERM_DENIED)
-		exit(126);
-	else
-		exit(1);
-	return (-1);
+	exit(1);
 }
 
 static int	connect_to_pipe(t_cp *cp)
@@ -93,7 +92,6 @@ static int	find_exec_file(t_cp *cp)
 	{
 		cp->cmd_path = cp->cmd[0];
 		rev = check_access(cp->cmd_path);
-		
 		if (rev == PERM_DENIED)
 			return (errno = PERM_DENIED, -1);
 		else if (rev == CMD_NOT_FOUND)
