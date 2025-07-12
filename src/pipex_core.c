@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 18:51:22 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/12 00:18:22 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/12 14:39:02 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ static int	new_pipe(int *input, int *output);
 
 int	pipex_core(t_ctx *ctx)
 {
-	ctx->cp->input = ctx->infile;
 	while (ctx->cmd_num--)
 	{
 		if (set_cp(ctx) == -1)
@@ -27,15 +26,13 @@ int	pipex_core(t_ctx *ctx)
 			ctx->err_str = "pipe";
 			return (-1);
 		}
-		
 		if (excute_cmd(ctx) == -1)
 		{
 			ctx->err_str = *ctx->cmds;
-			return (-1);
+			error(ctx->err_str);
 		}
 		ctx->cmds++;
 		ctx->cp->input = ctx->prev_pipe_to_read;
-		
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 18:59:10 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/12 00:19:36 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/12 14:34:44 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	excute_cmd(t_ctx *ctx)
 	pid_t	pid;
 	int		status;
 
-	
 	ctx->cp->cmd = split_cmd_str(*ctx->cmds);
 	
 	if (!ctx->cp->cmd)
@@ -38,17 +37,14 @@ int	excute_cmd(t_ctx *ctx)
 		return (-1);
 	if (pid == 0)
 	{
-		
 		excute(ctx->cp);
 		perror(ctx->cp->cmd[0]);
 		exit(EXIT_FAILURE);
 	}
-	
 	close(ctx->cp->input);
 	close(ctx->cp->output);
 	free_str_arr(ctx->cp->cmd);
 	waitpid(pid, &status, 0);
-	
 	return (0);
 }
 
