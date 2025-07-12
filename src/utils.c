@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 02:45:38 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/11 23:01:19 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/12 14:47:13 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,6 @@ void	free_str_arr(char **arr)
 	while (arr[i])
 		free(arr[i++]);
 	free(arr);
+	arr = NULL;
 	return ;
 }

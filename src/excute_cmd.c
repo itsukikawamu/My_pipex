@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 18:59:10 by ikawamuk          #+#    #+#             */
-/*   Updated: 2025/07/12 14:34:44 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2025/07/12 14:48:12 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	excute_cmd(t_ctx *ctx)
 		return (-1);
 	if (find_exec_file(ctx->cp) == -1)
 		return (-1);
-	;
+	
 	pid = fork();
 	if (pid == -1)
 		return (-1);
@@ -83,7 +83,9 @@ static int	find_exec_file(t_cp *cp)
 	}
 	else
 	{
+		
 		rev = get_cmd_path(&cp->cmd_path, cp->cmd, cp->env_paths);
+		
 		if (rev == PERM_DENIED)
 			return (errno = PERM_DENIED, -1);
 		else if (rev == CMD_NOT_FOUND)
@@ -109,6 +111,5 @@ static int	get_cmd_path(char **path, char **cmd, char **dir_arr)
 		free(*path);
 		i++;
 	}
-	free_str_arr(dir_arr);
 	return (CMD_NOT_FOUND);
 }
