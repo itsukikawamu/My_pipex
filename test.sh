@@ -13,8 +13,7 @@ test(){
 }
 
 test_invalid_args() {
-    local testname="$1"
-    shift 
+    local testname="$1" 
     ./pipex "$@" 2> errlog
     local actual_status=$?
     local testname="$1"
